@@ -6,6 +6,7 @@ var db = require('../user/index');
 var datauser = db.user;
 var model_user = db.Sequelize.Op;
 var bcrypt = require('bcryptjs');
+const multer = require('multer');
 
 var VerifyToken = require(__root + 'auth/VerifyToken');
 
@@ -13,29 +14,16 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 // var User = require('./User');
 
-// CREATES A NEW USER
-// router.post('/', [
-//         check('name').not().isEmpty(),
-//         check('email').normalizeEmail().isEmail(),
-//         check('password').isLength({min:5}) 
-//     ] ,(req, res) => {
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploud');
+      },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
 
-//     const errors = validationResult(req);
-//     console.log(errors);
-    
-//     if (!errors.isEmpty()) {
-//         return res.status(400).json({ errors: errors.array() });
-//     }
-//     datauser.create({
-//             name : req.body.name,
-//             email : req.body.email,
-//             password : req.body.password
-//         }, 
-//         function (err, user) {
-//             if (err) return res.status(500).json({ "error": err});
-//             res.status(200).json({ "status":"success", "message":"Berhasil Create"});
-//         });
-// });
+const uploadImg = multer({storage: storage}).single('image');
 
 // RETURNS ALL THE USERS IN THE DATABASE
 router.get('/', VerifyToken, function (req, res) {
@@ -129,6 +117,23 @@ router.put('/password/:id', VerifyToken,  function (req, res) {
         if (err) return res.status(500).send("There was a problem updating the user.");        
     })
 });
+router.post('/uploud', uploadImg ,(req, res) => {
+    data = {
+        image : req.file.filename,
+    }
+    datauser.update(data, {where: {id:req.body.id}}).then((result) => {
+            if(!req.file) {
+                res.status(500);
+                return next(err);
+              }
+              console.log(result);
+              
+            res.status(200).json({ "status":"success", "message":"uploud success" });
+            // res.status(200).json({ "status":"success", "message":"Berhasil Create","id":result.id,"judul":req.body.title});
+        }).catch((err) => {
+            if (err) return res.status(500).json({ "error": err});
+        }); 
+    });
 
 
 module.exports = router;
