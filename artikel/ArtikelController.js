@@ -123,12 +123,6 @@ router.put('/edit/:id', VerifyToken,  function (req, res) {
         return res.status(400).json({ message: "user cannot posted" });
     }
     
-    if (req.body.password) {
-        return res.status(400).json({ "message": "wrong route for change password"});
-    }
-    if (req.body.email) {
-        return res.status(400).json({ "message": "email can't change"});
-    }
     artikel.update(req.body, {where: {id:req.params.id}}).then((user) => {
         res.status(200).send({status:"success",update:"update success!"});
     }).catch((err) => {
