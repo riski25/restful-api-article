@@ -32,6 +32,7 @@ $ npm --version
 * artikel/ - Thid folder contain Rest API controller article
 
 ## API Endpoints
+*) TOKEN EXPIRED : 1 hour
 
 ### REGISTER USER EXAMPLE
 
@@ -144,7 +145,7 @@ Body Request :
     "title":"new article",
     "description":"new article",
     "image":"img-article",
-    "tipe":"admin"
+    "tipe":"admin" -> OPTION : admin/user
 }
 ```
 ### GET ARTICLE PAGE EXAMPLE
