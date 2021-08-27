@@ -15,22 +15,25 @@
 
 ## Running tested 
 installation was successful on environment :
+```
 $ node --version
 v10.16.2
-
+```
+```
 $ npm --version
 6.9.0
-
+```
 ## Application Structure
 * server.js - This file defines our express server.
 * config.js - This file defines secret code for JWT Token.
 * app.js - This file defines route end point API
 * auth/ - This folder contains the REST authentication for login API.
 * user/ - This folder contains the RESTful API user.
+* artikel/ - Thid folder contain Rest API controller article
 
 ## API Endpoints
 
-REGISTER EXAMPLE
+### REGISTER USER EXAMPLE
 
 ```
 'Content-Type: application/json'
@@ -43,13 +46,18 @@ body Request :
 
 ```
 {
-    "name" : yourname,
-    "email" : your@email.com,
-    "password" : yourpass
+    "email" : "example@gmail.com",
+    "username":"contohuser",
+    "password":"contohpassword",
+    "nama":"userbaru",
+    "alamat":"contohalamat",
+    "jeniskelamin":"L", -> OPTION L(laki)/P(perempuan)
+    "foto":"img.jpg",
+    "akses":"user" -> OPTION admin/user
 }
 ```
 
-LOGIN EXAMPLE
+### LOGIN USER EXAMPLE
 ```
 'Content-Type: application/json'
 ```
@@ -68,7 +76,7 @@ body Request :
 }
 ```
 
-GET USER EXAMPLE
+### GET USER EXAMPLE
 ```
 'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
 'Content-Type: application/json'
@@ -77,8 +85,87 @@ Method :
 ```
 GET     http://localhost:3000/api/users/:id
 ```
+### GET USER by username EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+GET     http://localhost:3000/api/users/:username
+```
 
-LOOGUT USER EXAMPLE
+### CHANGE USER PASSWORD EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+PUT     http://localhost:3000/api/user/password/:id
+```
+
+Body Request :
+```
+{
+    "password":"new password",
+}
+```
+### CREATE ARTICLE EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+POST     http://localhost:3000/api/article
+```
+
+Body Request :
+```
+{
+    "title":"new article",
+    "description":"new article",
+    "image":"img-article",
+    "tipe":"admin"
+}
+```
+### GET ARTICLE PAGE EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+GET     http://localhost:3000/api/article/
+```
+
+### GET ARTICLE by ID EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+GET     http://localhost:3000/api/article/:id
+```
+### UPLOUD IMAGE ARTICLE EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: multipart/form-data'
+```
+Method :
+```
+POST     http://localhost:3000/api/article/uploud
+```
+
+Body Request :
+```
+{
+    "image":"new password",
+}
+```
+### LOOGUT USER EXAMPLE
 
 Method :
 ```
