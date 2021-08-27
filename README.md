@@ -6,7 +6,7 @@
 
 ## Requirements development
 1. Node global package
-2. MongoDB account
+2. mySQL
 
 ## Installation
 * Clone the repo by using ```git clone```.
