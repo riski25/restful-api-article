@@ -139,6 +139,41 @@ Method :
 ```
 GET     http://localhost:3000/api/article/
 ```
+### DELETE ARTICLE EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+DELETE     http://localhost:3000/api/article/:id
+```
+
+Body Request :
+```
+{
+    "tipe":"admin"
+}
+```
+### EDIT ARTICLE EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: application/json'
+```
+Method :
+```
+PUT     http://localhost:3000/api/article/edit/:id
+```
+
+Body Request :
+```
+{
+    "title":"new article",
+    "description":"new article",
+    "image":"img-article",
+    "tipe":"admin"
+}
+```
 
 ### GET ARTICLE by ID EXAMPLE
 ```
