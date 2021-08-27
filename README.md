@@ -22,7 +22,7 @@ $ npm --version
 6.9.0
 
 ## Application Structure
-* server.js - This file defines our express server and connects it to MongoDB using mongoose setting.
+* server.js - This file defines our express server.
 * config.js - This file defines secret code for JWT Token.
 * app.js - This file defines route end point API
 * auth/ - This folder contains the REST authentication for login API.
