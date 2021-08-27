@@ -111,6 +111,23 @@ Body Request :
     "password":"new password",
 }
 ```
+### UPLOUD IMAGE USER EXAMPLE
+```
+'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
+'Content-Type: multipart/form-data'
+```
+Method :
+```
+POST     http://localhost:3000/api/users/uploud
+```
+
+Body Request :
+```
+{
+    "id": "id"
+    "image":"new password",
+}
+```
 ### CREATE ARTICLE EXAMPLE
 ```
 'Headers': x-access-token: [YOUR TOKEN FROM LOGIN}
@@ -197,7 +214,8 @@ POST     http://localhost:3000/api/article/uploud
 Body Request :
 ```
 {
-    "image":"new password",
+    "id":"id"
+    "image":"image",
 }
 ```
 ### LOOGUT USER EXAMPLE
